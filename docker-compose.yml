@@ -1,0 +1,78 @@
+version: '3'
+services:
+  nginx:
+    image: nginx:1
+    container_name: nginx
+    #environment:
+    #  TZ: Asia/Tokyo # Please set time zone if you want to change it.
+    volumes:
+      - ./logs/nginx/:/var/log/nginx/
+      - type: bind
+        source: ./nginx/config/nginx.conf
+        target: /etc/nginx/nginx.conf
+        read_only: true
+    hostname: nginx
+    ports:
+      - 3000:3000
+      - 443:443
+    links:
+      - redmine
+    depends_on:
+      - redmine
+    command: ["nginx", "-g", "daemon off;"]
+    restart: unless-stopped
+  mariadb:
+    image: mariadb:11
+    container_name: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: mypass
+      MYSQL_USER: redmine
+      MYSQL_PASSWORD: redmine
+      MYSQL_DATABASE: redmine
+      #TZ: Asia/Tokyo # Please set time zone if you want to change it.
+    volumes:
+      - type: bind
+        source: ./mariadb/config/my.cnf
+        target: /etc/mysql/my.cnf
+        read_only: true
+      - ./storage/mariadb-storage/data:/var/lib/mysql
+    hostname: mariadb
+    expose:
+      - 3306
+    restart: unless-stopped
+  redmine:
+    image: redmine:5
+    container_name: redmine
+    environment:
+      RAILS_MIGRATE: 1
+      PLUGINS_MIGRATE: 1
+      DB_PING_USER: redmine
+      DB_PING_USER_PASSWORD: redmine
+      UNICORN_WORKER_PROCESS: 2
+      UNICORN_TIMEOUT: 60
+      UNICORN_WOKER_KILLER_MEMORY_MIN: 192  # Memory min threshold. Unit is MB.
+      UNICORN_WOKER_KILLER_MEMORY_MAX: 256  # Memory max threshold. Unit is MB.
+      UNICORN_WOKER_KILLER_CHECK_CYCLE: 16
+      UNICORN_WOKER_KILLER_VERBOSE: 0
+      #TZ: Asia/Tokyo # Please set time zone if you want to change it.
+    hostname: redmine
+    expose:
+      - 3000
+    links:
+      - mariadb
+    depends_on:
+      - mariadb
+    volumes:
+      - ./logs/redmine/:/usr/src/app/redmine/log/
+      - ./storage/redmine-files/files:/usr/src/app/redmine/files
+      - ./storage/git-storage/repositories:/usr/src/git
+      # for configuration
+      - ./redmine/src/config/configuration.yml:/usr/src/app/redmine/config/configuration.yml
+      - ./redmine/src/config/database.yml:/usr/src/app/redmine/config/database.yml
+      - ./redmine/src/config/unicorn.rb:/usr/src/app/redmine/config/unicorn.rb
+      - ./redmine/src/config.ru:/usr/src/app/redmine/config.ru
+      - ./redmine/src/public/themes:/usr/src/app/redmine/public/themes
+      - ./redmine/src/plugins/:/usr/src/app/redmine/plugins/
+      # TODO : Sync host machine's source code.
+      #- ./redmine/redmine/app/:/usr/src/app/redmine/app/
+    restart: unless-stopped

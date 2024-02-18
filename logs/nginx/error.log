@@ -1,0 +1,26 @@
+2024/02/18 12:10:04 [emerg] 1#1: no "events" section in configuration
+2024/02/18 12:10:04 [emerg] 1#1: no "events" section in configuration
+2024/02/18 12:10:05 [emerg] 1#1: no "events" section in configuration
+2024/02/18 12:10:05 [emerg] 1#1: no "events" section in configuration
+2024/02/18 12:10:06 [emerg] 1#1: no "events" section in configuration
+2024/02/18 12:10:08 [emerg] 1#1: no "events" section in configuration
+2024/02/18 12:10:11 [emerg] 1#1: no "events" section in configuration
+2024/02/18 12:10:18 [emerg] 1#1: no "events" section in configuration
+2024/02/18 12:10:30 [emerg] 1#1: no "events" section in configuration
+2024/02/18 12:10:56 [emerg] 1#1: no "events" section in configuration
+2024/02/18 12:11:48 [emerg] 1#1: no "events" section in configuration
+2024/02/18 12:16:27 [emerg] 1#1: no "events" section in configuration
+2024/02/18 12:16:27 [emerg] 1#1: no "events" section in configuration
+2024/02/18 12:16:27 [emerg] 1#1: no "events" section in configuration
+2024/02/18 12:16:28 [emerg] 1#1: no "events" section in configuration
+2024/02/18 12:16:29 [emerg] 1#1: no "events" section in configuration
+2024/02/18 12:16:30 [emerg] 1#1: no "events" section in configuration
+2024/02/18 12:16:34 [emerg] 1#1: no "events" section in configuration
+2024/02/18 12:16:40 [emerg] 1#1: no "events" section in configuration
+2024/02/18 12:16:53 [emerg] 1#1: no "events" section in configuration
+2024/02/18 12:31:42 [error] 21#21: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.65.1, server: redmine, request: "GET /admin/plugins HTTP/1.1", upstream: "http://172.22.0.3:3000/admin/plugins", host: "127.0.0.1:3000", referrer: "http://127.0.0.1:3000/admin"
+2024/02/18 12:31:42 [error] 21#21: *1 open() "/etc/nginx/html/50x.html" failed (2: No such file or directory), client: 192.168.65.1, server: redmine, request: "GET /admin/plugins HTTP/1.1", upstream: "http://172.22.0.3:3000/admin/plugins", host: "127.0.0.1:3000", referrer: "http://127.0.0.1:3000/admin"
+2024/02/18 12:31:42 [error] 21#21: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.65.1, server: redmine, request: "GET /favicon.ico HTTP/1.1", upstream: "http://172.22.0.3:3000/favicon.ico", host: "127.0.0.1:3000", referrer: "http://127.0.0.1:3000/admin/plugins"
+2024/02/18 12:31:42 [error] 21#21: *1 open() "/etc/nginx/html/50x.html" failed (2: No such file or directory), client: 192.168.65.1, server: redmine, request: "GET /favicon.ico HTTP/1.1", upstream: "http://172.22.0.3:3000/favicon.ico", host: "127.0.0.1:3000", referrer: "http://127.0.0.1:3000/admin/plugins"
+2024/02/18 12:31:44 [error] 21#21: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.65.1, server: redmine, request: "GET /admin/plugins HTTP/1.1", upstream: "http://172.22.0.3:3000/admin/plugins", host: "127.0.0.1:3000", referrer: "http://127.0.0.1:3000/admin"
+2024/02/18 12:31:44 [error] 21#21: *1 open() "/etc/nginx/html/50x.html" failed (2: No such file or directory), client: 192.168.65.1, server: redmine, request: "GET /admin/plugins HTTP/1.1", upstream: "http://172.22.0.3:3000/admin/plugins", host: "127.0.0.1:3000", referrer: "http://127.0.0.1:3000/admin"
