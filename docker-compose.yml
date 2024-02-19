@@ -22,10 +22,9 @@ services:
       REDMINE_PLUGINS_MIGRATE: true
       TZ: Europe/Moscow
     volumes:
-      - /data/redmine/files:/usr/src/redmine/files
-      - /data/redmine/plugins:/usr/src/redmine/plugins
-      - /data/redmine/themes:/usr/src/redmine/public/themes
-      - /data/redmine/config/configuration.yml:/usr/src/redmine/config/configuration.yml
+      - ./data/redmine/files:/usr/src/redmine/files
+      - ./data/redmine/plugins:/usr/src/redmine/plugins
+      - ./data/redmine/themes:/usr/src/redmine/public/themes
 
   db:
     container_name: redmine_db
@@ -38,7 +37,7 @@ services:
       MARIADB_DATABASE: redmine
       TZ: Europe/Moscow
     volumes:
-     - /data/redmine/db:/var/lib/mysql
+     - ./data/redmine/db:/var/lib/mysql
 
   nginx:
     image: nginx:1
