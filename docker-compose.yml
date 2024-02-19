@@ -32,6 +32,7 @@ services:
     restart: unless-stopped
     networks:
       - redmine
+    hostname: mariadb
     environment:
       MARIADB_ROOT_PASSWORD: redmine
       MARIADB_DATABASE: redmine
