@@ -1,18 +1,8 @@
-
 #!/bin/sh
 
-if [ "$#" -lt 1 ]; then
-    echo "Usage: $0 <backup folder>";
-    exit;
-fi
+#cd=/backups
+echo "[INFO] Start backup..."
+docker run --rm --network redmine-docker-compose_redmine -it mariadb:10.6 mysqldump --host mariadb --user=root --password=redmine --opt redmine > ./backups/redmine.sql
 
-# current dir
-cd=${0%/*}
-
-. $cd/.env
-
-docker run --rm --network ${DOCKER_NETWORK} -it mariadb:${MARIADB_VERSION} mysqldump --host ${MYSQL_HOST} --user=root --password=${MYSQL_PWD} --opt ${REDMINE_DB} > /data/redmine/redmine.sql
-
-tar -C / -cz -f $1/redmine.tar.gz --exclude="db/*" data/redmine opt/redmine
-
-echo "[INFO] Finish backup."
+tar -czf backups/redmine.tar.gz --exclude="db/*" data/redmine
+echo "[INFO] Finish backup..."
