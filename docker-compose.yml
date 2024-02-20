@@ -25,6 +25,10 @@ services:
       - ./data/redmine/files:/usr/src/redmine/files
       - ./data/redmine/plugins:/usr/src/redmine/plugins
       - ./data/redmine/themes:/usr/src/redmine/public/themes
+      - type: bind
+        source: ./data/redmine/config/configuration.yml
+        target: /usr/src/redmine/config/configuration.yml
+        read_only: false
 
   db:
     container_name: redmine_db
