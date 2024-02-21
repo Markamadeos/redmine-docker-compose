@@ -17,8 +17,8 @@ services:
       - 3000
     environment:
       REDMINE_DB_MYSQL: db
-      REDMINE_DB_PASSWORD: redmine
-      REDMINE_SECRET_KEY_BASE: redmine
+      REDMINE_DB_PASSWORD: ${DB_SECRET}
+      REDMINE_SECRET_KEY_BASE: ${REDMINE_SECRET}
       REDMINE_PLUGINS_MIGRATE: true
       TZ: Europe/Moscow
     volumes:
@@ -32,14 +32,14 @@ services:
 
   db:
     container_name: redmine_db
-    image: mariadb:10.6
+    image: mariadb:${DB_VERSION}
     restart: unless-stopped
     networks:
       - redmine
     hostname: mariadb
     environment:
-      MARIADB_ROOT_PASSWORD: redmine
-      MARIADB_DATABASE: redmine
+      MARIADB_ROOT_PASSWORD: ${DB_SECRET}
+      MARIADB_DATABASE: ${REDMINE_DB}
       TZ: Europe/Moscow
     volumes:
      - ./data/redmine/db:/var/lib/mysql
