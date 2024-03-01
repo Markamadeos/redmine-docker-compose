@@ -19,7 +19,7 @@ services:
       REDMINE_DB_MYSQL: db
       REDMINE_DB_PASSWORD: ${DB_SECRET}
       REDMINE_SECRET_KEY_BASE: ${REDMINE_SECRET}
-      REDMINE_PLUGINS_MIGRATE: true
+#      REDMINE_PLUGINS_MIGRATE: true
       TZ: Europe/Moscow
     volumes:
       - ./data/redmine/files:/usr/src/redmine/files
